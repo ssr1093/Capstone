@@ -65,12 +65,12 @@ public class MainController {
 
 	}
 
-	@RequestMapping("/403")
+	@GetMapping("/403")
 	public String accessDenied() {
 		return "/403";
 	}
 
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String home() {
 		return "index";
 	}
