@@ -84,10 +84,11 @@
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
-				<version>1.4.3</version>
+				<version>1.4.13</version>
 				<executions>
 					<execution>
 						<id>default</id>
+						<phase>install</phase>
 						<goals>
 							<goal>build</goal>
 							<goal>push</goal>
@@ -95,11 +96,23 @@
 					</execution>
 				</executions>
 				<configuration>
-					<repository>Medicare/Medicare</repository>
+					<repository>ssudhakar93/medicare</repository>
 					<tag>${project.version}</tag>
+					<buildArgs>
+						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
 				</configuration>
+				<dependencies>
+					<!-- To make this work on JDK 9+ -->
+					<dependency>
+						<groupId>javax.activation</groupId>
+						<artifactId>javax.activation-api</artifactId>
+						<version>1.2.0</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
+		<finalName>Medicare</finalName>
 	</build>
 
 </project>
